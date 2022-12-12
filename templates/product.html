@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />
+    <link href="{% static 'product/fontawesome/css/all.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'product/css/templatemo-comparto.css' %}" rel="stylesheet" />
+    <title>Comparto HTML CSS Template</title>
+<!--
+
+Comparto TemplateMo
+
+https://templatemo.com/tm-544-comparto
+
+-->
+</head>
+
+<body>
+    <!-- Back to top button -->
+   <!-- <a id="button"><i class="fas fa-angle-up fa-2x"></i></a>
+    <div class="container-fluid">
+        <div class="tm-site-header tm-mb-1">
+            <div class="tm-site-name-container tm-bg-color-1">
+                <h1 class="tm-text-white">Comparto</h1>
+            </div>
+            <div class="tm-nav-container tm-bg-color-8">
+                <nav class="tm-nav" id="tm-nav">
+                    <ul>
+                        <li class="tm-nav-item current">
+                            <a href="#about" class="tm-nav-link">
+                                <span class="tm-mb-1">.01</span>
+                                <span>About</span>
+                            </a>
+                        </li>
+                        <li class="tm-nav-item">
+                            <a href="#services" class="tm-nav-link">
+                                <span class="tm-mb-1">.02</span>
+                                <span>Services</span>
+                            </a>
+                        </li>
+                        <li class="tm-nav-item">
+                            <a href="#gallery" class="tm-nav-link">
+                                <span class="tm-mb-1">.03</span>
+                                <span>Gallery</span>
+                            </a>
+                        </li>
+                        <li class="tm-nav-item">
+                            <a href="#contact" class="tm-nav-link">
+                                <span class="tm-nav-text tm-mb-1">.04</span>
+                                <span class="tm-nav-text">Contact</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>-->
+        <section class="tm-mb-1" id="about">
+            <div class="tm-row tm-about-row">
+                <div class="tm-section-1-l">
+                    <img style="height:700px;width:700px;" src="{{pr.image.url}}" alt="About image" class="tm-img-responsive">
+                </div>
+                <article class="tm-section-1-r tm-bg-color-8">
+                    <h2 class="tm-mb-2 tm-title-color">{{pr.name}}</h2>
+                    <p>Rs:{{pr.price}}/-</p>
+                    <p>{{pr.description}}</p>
+                    <p>Stock Available:{{pr.stock}}</p>
+{% if pr.stock <= 0 %}
+  <h1>Sorry No Stock Left</h1>
+                    {% else %}
+                     <a href="{% url 'addcart' pr.id %}" class="tm-btn tm-btn-1 tm-link-to-services">Add To Cart</a>
+{% endif %}
+                </article>
+            </div>
+        </section>
+{% endblock %}
+      </body>

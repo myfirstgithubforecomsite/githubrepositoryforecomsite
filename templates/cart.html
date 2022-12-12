@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shopping Cart</title>
+
+    <link rel="stylesheet" href="{% static 'cart/style.css' %}" media="screen" title="no title" charset="utf-8">
+    <script src="https://code.jquery.com/jquery-2.2.4.js" charset="utf-8"></script>
+    <meta name="robots" content="noindex,follow" />
+  </head>
+  <body>
+    <div class="shopping-cart">
+      <!-- Title -->
+      <div class="title">
+        Shopping Bag  <i class="fa fa-shopping-cart" style="color:orange"></i>
+      </div>
+ {% for i in ci %}
+      <!-- Product #1 -->
+      <div class="item">
+        <div class="buttons">
+          <a href="{% url 'remove' i.prodt.id %}"><span><i class="fa fa-trash" style="font-size:20px"></i></span></a>&nbsp;&nbsp;&nbsp;&nbsp;
+         </div>
+      <div class="image">
+         <a href="{{i.prodt.get_url}}"> <img style="height:100px;width:100px;" src="{{i.prodt.image.url}}" alt="{{i.prodt.name}}" /></a>
+      </div>
+
+        <div class="description">
+          <span>{{i.prodt.name}}</span>
+          <span>{{i.prodt.price}} * {{i.quan}}</span>
+          <span>Quantity: {{i.quan}}</span>
+        </div>
+         <div class="quantity">
+          <button class="plus-btn" type="button" name="button">
+            <a href="{% url 'addcart' i.prodt.id %}"><i class="fa fa-plus" style="font-size:10px ;"></i></a>
+          </button>
+          <input type="text" name="name" value="&nbsp;{{i.quan}}&nbsp;">
+          <button class="minus-btn" type="button" name="button">
+            <a href="{% url 'cart_decrement' i.prodt.id %}" > <i class="fa fa-minus" style="font-size:10px ;"></i></a>
+          </button>
+        </div>
+          <div class="total-price">Total: ${{t}}</div>
+      </div>
+  {% endfor %}
+    </script>
+    </div>
+  {% endblock %}
+  </body>
+</html>
